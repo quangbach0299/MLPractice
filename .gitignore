@@ -1,18 +1,24 @@
 # Datasets (có thể tải lại)
-Datasets/*.csv
-Datasets/*.npz
-Datasets/movie_data/
-Datasets/Time-series-datasets/
+Datasets/
+*.csv
+*.npz
+*.zip
+*.xls
+*.xlsx
+*.ods
 
 # Virtual Environment
 venv/
 env/
+ENV/
 
 # Generated Files
 *.html
 __pycache__/
 *.py[cod]
+*.so
 
 # IDE
 .vscode/
 .idea/
+*.swp
