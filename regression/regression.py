@@ -37,15 +37,16 @@ except NameError:
 try:
     # First try reading as CSV (faster and more common)
     data = pd.read_csv(file_path)
-except Exception as e:
-    # If that fails, try reading as Excel file
+except (FileNotFoundError, pd.errors.EmptyDataError, pd.errors.ParserError, UnicodeDecodeError):
+    # If CSV reading fails, try reading as Excel file
     try:
         data = pd.read_excel(file_path)
-    except Exception:
+    except (FileNotFoundError, ValueError, ImportError) as excel_error:
         raise FileNotFoundError(
             f"Could not read '{file_path}' as CSV or Excel file. "
-            f"Please ensure the file exists and is in the correct format."
-        )
+            f"Please ensure the file exists and is in the correct format. "
+            f"For Excel support, install: pip install openpyxl xlrd"
+        ) from excel_error
 
 # profile = ProfileReport(x_train, title="Student Score Report")
 # profile.to_file("student_score_profiling_report.html")
