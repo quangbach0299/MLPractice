@@ -6,6 +6,8 @@ This script performs regression analysis on student score data using scikit-lear
 
 Place the `StudentScore.xls` file in this `regression/` directory.
 
+**Note:** The script automatically handles both CSV files (with .xls extension) and genuine Excel files. It first tries to read as CSV (faster), and if that fails, reads as Excel format.
+
 ## Running the Script
 
 The script now includes robust path resolution that works in multiple execution contexts:
@@ -61,3 +63,4 @@ This ensures the script works reliably regardless of how you execute it!
 
 - The data file `StudentScore.xls` is gitignored and must be provided separately
 - Make sure pandas and scikit-learn are installed: `pip install pandas scikit-learn ydata-profiling`
+- For Excel file support, also install: `pip install openpyxl xlrd`

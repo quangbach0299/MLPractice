@@ -24,7 +24,14 @@ except NameError:
         # Final fallback: construct from current working directory
         file_path = os.path.join(os.getcwd(), 'regression', 'StudentScore.xls')
 
-data = pd.read_csv(file_path)
+# Read the data file - handle both CSV and Excel formats
+# Some files may be named .xls but are actually CSV files
+try:
+    # First try reading as CSV (faster and more common)
+    data = pd.read_csv(file_path)
+except:
+    # If that fails, try reading as Excel file
+    data = pd.read_excel(file_path)
 
 # profile = ProfileReport(x_train, title="Student Score Report")
 # profile.to_file("student_score_profiling_report.html")
